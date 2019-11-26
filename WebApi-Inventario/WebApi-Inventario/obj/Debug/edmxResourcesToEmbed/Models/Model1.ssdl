@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="INVENTARIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bodega">
+    <Key>
+      <PropertyRef Name="IdBodega" />
+    </Key>
+    <Property Name="IdBodega" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="IdProducto" />
+    </Key>
+    <Property Name="IdProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" />
+    <Property Name="Foto" Type="varchar(max)" />
+    <Property Name="CostoCompra" Type="float" />
+    <Property Name="CostoVenta" Type="float" />
+    <Property Name="CantidadDisponible" Type="int" />
+    <Property Name="IdBodega" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Apellido" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Direccion" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" />
+    <Property Name="Rol" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VentaDetalle">
+    <Key>
+      <PropertyRef Name="IdVentaDetalle" />
+    </Key>
+    <Property Name="IdVentaDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" />
+    <Property Name="Valor" Type="float" Nullable="false" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+    <Property Name="IdProducto" Type="int" Nullable="false" />
+    <Property Name="IdVentaEncabezado" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VentaEncabezado">
+    <Key>
+      <PropertyRef Name="IdVentaEncabezado" />
+    </Key>
+    <Property Name="IdVentaEncabezado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" />
+    <Property Name="Cliente" Type="varchar" MaxLength="200" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+    <Property Name="MedioPago" Type="varchar" MaxLength="100" />
+    <Property Name="CostoTotal" Type="float" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Producto__IdBode__164452B1">
+    <End Role="Bodega" Type="Self.Bodega" Multiplicity="1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bodega">
+        <PropertyRef Name="IdBodega" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="IdBodega" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VentaDeta__IdPro__239E4DCF">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="VentaDetalle" Type="Self.VentaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="VentaDetalle">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VentaDeta__IdVen__24927208">
+    <End Role="VentaEncabezado" Type="Self.VentaEncabezado" Multiplicity="1" />
+    <End Role="VentaDetalle" Type="Self.VentaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VentaEncabezado">
+        <PropertyRef Name="IdVentaEncabezado" />
+      </Principal>
+      <Dependent Role="VentaDetalle">
+        <PropertyRef Name="IdVentaEncabezado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VentaEnca__IdUsu__1ED998B2">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="VentaEncabezado" Type="Self.VentaEncabezado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="VentaEncabezado">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="INVENTARIOModelStoreContainer">
+    <EntitySet Name="Bodega" EntityType="Self.Bodega" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VentaDetalle" EntityType="Self.VentaDetalle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VentaEncabezado" EntityType="Self.VentaEncabezado" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Producto__IdBode__164452B1" Association="Self.FK__Producto__IdBode__164452B1">
+      <End Role="Bodega" EntitySet="Bodega" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VentaDeta__IdPro__239E4DCF" Association="Self.FK__VentaDeta__IdPro__239E4DCF">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="VentaDetalle" EntitySet="VentaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VentaDeta__IdVen__24927208" Association="Self.FK__VentaDeta__IdVen__24927208">
+      <End Role="VentaEncabezado" EntitySet="VentaEncabezado" />
+      <End Role="VentaDetalle" EntitySet="VentaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VentaEnca__IdUsu__1ED998B2" Association="Self.FK__VentaEnca__IdUsu__1ED998B2">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="VentaEncabezado" EntitySet="VentaEncabezado" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="67a4a213c2764ca99509c0561fd3994f" Name="Diagram1">
+        <EntityTypeShape EntityType="INVENTARIOModel.Bodega" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="INVENTARIOModel.Producto" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INVENTARIOModel.Usuario" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="INVENTARIOModel.VentaDetalle" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="INVENTARIOModel.VentaEncabezado" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="INVENTARIOModel.FK__Producto__IdBode__164452B1" ManuallyRouted="false" />
+        <AssociationConnector Association="INVENTARIOModel.FK__VentaDeta__IdPro__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="INVENTARIOModel.FK__VentaEnca__IdUsu__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="INVENTARIOModel.FK__VentaDeta__IdVen__24927208" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
