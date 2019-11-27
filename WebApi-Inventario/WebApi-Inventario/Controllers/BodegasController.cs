@@ -74,11 +74,11 @@ namespace WebApi_Inventario.Controllers
         [ResponseType(typeof(Bodega))]
         public IHttpActionResult PostBodega(Bodega bodega)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+            bodega.Fecha = DateTime.Now;
             db.Bodega.Add(bodega);
             db.SaveChanges();
 
