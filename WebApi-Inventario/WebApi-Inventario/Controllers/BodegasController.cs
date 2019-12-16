@@ -78,7 +78,7 @@ namespace WebApi_Inventario.Controllers
             //{
             //    return BadRequest(ModelState);
             //}
-            bodega.Fecha = DateTime.Now;
+            bodega.Fecha = DateTime.Now; //Registro fecha servidor
             db.Bodega.Add(bodega);
             db.SaveChanges();
 

@@ -78,7 +78,7 @@ namespace WebApi_Inventario.Controllers
             //{
             //    return BadRequest(ModelState);
             //}
-            producto.Fecha = DateTime.Now;
+            producto.Fecha = DateTime.Now; //Registro fecha servidor
             db.Producto.Add(producto);
             db.SaveChanges();
 
