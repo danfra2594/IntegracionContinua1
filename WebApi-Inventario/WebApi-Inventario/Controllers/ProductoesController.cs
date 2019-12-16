@@ -74,11 +74,11 @@ namespace WebApi_Inventario.Controllers
         [ResponseType(typeof(Producto))]
         public IHttpActionResult PostProducto(Producto producto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+            producto.Fecha = DateTime.Now;
             db.Producto.Add(producto);
             db.SaveChanges();
 

@@ -74,11 +74,11 @@ namespace WebApi_Inventario.Controllers
         [ResponseType(typeof(VentaDetalle))]
         public IHttpActionResult PostVentaDetalle(VentaDetalle ventaDetalle)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+            ventaDetalle.Fecha = DateTime.Now;
             db.VentaDetalle.Add(ventaDetalle);
             db.SaveChanges();
 

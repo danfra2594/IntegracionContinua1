@@ -74,11 +74,11 @@ namespace WebApi_Inventario.Controllers
         [ResponseType(typeof(Usuario))]
         public IHttpActionResult PostUsuario(Usuario usuario)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+            usuario.Fecha = DateTime.Now;
             db.Usuario.Add(usuario);
             db.SaveChanges();
 
