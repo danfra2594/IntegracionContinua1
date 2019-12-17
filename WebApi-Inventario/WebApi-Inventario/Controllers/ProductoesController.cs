@@ -78,6 +78,10 @@ namespace WebApi_Inventario.Controllers
             //{
             //    return BadRequest(ModelState);
             //}
+
+            if (producto.Descripcion == "Producto 1")
+                producto.Descripcion = "Producto 1 " + DateTime.Now.ToString();
+
             producto.Fecha = DateTime.Now; //Registro fecha servidor
             db.Producto.Add(producto);
             db.SaveChanges();
