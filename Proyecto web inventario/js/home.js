@@ -1,37 +1,32 @@
-function connecTo_example(){
+function guardarBodega() {
 
-  if (str == "") {
-          document.getElementById("txtHint").innerHTML = "";
-          return;
-      } else {
-          if (window.XMLHttpRequest) {
-              // code for IE7+, Firefox, Chrome, Opera, Safari
-              xmlhttp = new XMLHttpRequest();
-          } else {
-              // code for IE6, IE5
-              xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-          }
-          xmlhttp.onreadystatechange = function() {
-              if (this.readyState == 4 && this.status == 200) {
-                  document.getElementById("txtHint").innerHTML = this.responseText;
-              }
-          };
-          xmlhttp.open("GET","getuser.php?q="+str,true);
-          xmlhttp.send();
-      }
+  var decripcion = document.getElementById("descripcion").value;
+  var estado = document.getElementById("estado").value;
+  var fecha = new Date();
 
-}
+  var filter = {
+    IdBodega: 0,
+    Descripcion: decripcion,
+    Estado: estado == 1 ? true : false,
+    Fecha : fecha
+  }
 
-function getAllProducts(){
-
-}
-
-function getAllProducts(){
-
-}
-
-
-//Permite obtener una conexión dínámica para conexiones de consunmo de API
-function RequestApi($api, $method){
-
+  $.ajax({
+    data: filter,//JSON.stringify(filter),
+    type: "POST",
+    dataType: 'application/json; charset=utf-8',
+    url: "https://localhost:44362/api/bodegas",
+    })
+     .done(function( data, textStatus, jqXHR ) {
+         if ( console && console.log ) {
+             console.log( "La solicitud se ha completado correctamente." );
+             alert("Registro de bodega almacenado correctamente");
+         }
+     })
+     .fail(function( jqXHR, textStatus, errorThrown ) {
+         if ( console && console.log ) {
+             console.log( "La solicitud se ha completado correctamente." );
+             alert("Registro de bodega almacenado correctamente");
+         }
+    });
 }
