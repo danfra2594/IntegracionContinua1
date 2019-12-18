@@ -80,7 +80,7 @@ namespace WebApi_Inventario.Controllers
             //}
 
             if (producto.Descripcion == "Producto 1")
-                producto.Descripcion = "Producto 1 " + DateTime.Now.ToString();
+                producto.Descripcion = "Producto 1 " + DateTime.Now.ToString();//Comentario
 
             producto.Fecha = DateTime.Now; //Registro fecha servidor
             db.Producto.Add(producto);
